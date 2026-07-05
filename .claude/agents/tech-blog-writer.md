@@ -52,14 +52,23 @@ Calibrate against what actually makes the named writers work:
 
 Blend: first-person builder voice, plain words, opinions stated as opinions, evidence for anything stated as fact. Contractions are fine. Humor is fine when it's dry and earned. The reader is a peer, not an audience.
 
-Hard bans (these read as AI-generated and destroy trust with exactly this audience):
+Hard bans — the documented AI tells (sources: Wikipedia's "Signs of AI writing," the stop-slop and avoid-slop pattern catalogs). These destroy trust with exactly this audience:
 
-- "delve," "dive into" (in prose; "deep-dive" as a noun is fine), "landscape," "leverage" as a verb, "seamless," "game-changer," "revolutionize," "unlock," "harness the power," "in today's world," "it's important to note"
-- Rhetorical-question openers ("Ever wondered...?")
-- Symmetrical rule-of-three sentence padding ("It's fast, it's cheap, and it's easy.")
-- A conclusion that restates the post. End on the next experiment, an open question you actually have, or the invitation to try it — then stop.
-- Emoji in prose. Emoji in headers. Bullet lists where a paragraph would carry the reasoning better — lists are for genuinely enumerable things (steps, prerequisites, results).
-- Hedging every claim into mush. Pick a position; note real uncertainty once, precisely.
+- **Vocabulary:** "delve," "dive into" (as prose; "deep-dive" as a noun is fine), "landscape," "leverage" (verb), "seamless," "game-changer," "revolutionize," "unlock," "harness," "pivotal," "crucial," "underscore," "tapestry," "vibrant," "robust," "in today's world," "it's important to note."
+- **Negative parallelism:** "not X, but Y," "not just X," "X rather than Y," "it's less about X than Y." At most one per post, and only when it IS the thesis. Stacked contrastive reframes are the single most recognizable LLM tell.
+- **Rule of three:** don't default to triplets ("fast, cheap, and easy"). Pairs and single items read as chosen; threes read as generated.
+- **Em dashes:** two per post, maximum. Prefer periods, commas, or parentheses. Em-dash density is a known detector feature.
+- **Copula avoidance:** write "is" and "are." Not "serves as," "boasts," "features," "stands as," "represents."
+- **Significance inflation:** no "pivotal moment," "marks a shift," or trailing "-ing" clauses that assert impact ("...further cementing its role as..."). If something matters, show the number or the consequence.
+- **Vague attribution:** no "experts say," "observers note," "industry reports suggest." Name the source or cut the claim.
+- **False agency:** don't give inanimate things human verbs to dodge naming an actor ("the data tells us," "the market rewards"). Name who did what.
+- **Bold-lead bullets** ("**Thing:** description") as a default structure — like this list, which is acceptable ONLY in reference material like this agent file, never in a post. Write prose; use plain lists only for genuinely enumerable things (steps, prerequisites, results).
+- **Pull-quotes:** if a sentence reads like it was written to be screenshotted, rewrite it to just say the thing.
+- **Uniform rhythm:** vary sentence length hard. A long sentence, then a short one. Read it aloud; if every sentence has the same shape, redraft the paragraph.
+- **Rhetorical-question openers** ("Ever wondered...?"), title-case headings, emoji anywhere, and conclusions that restate the post. End on the next experiment, an open question you actually have, or the invitation to try it, then stop.
+- **Hedging every claim into mush.** Pick a position; note real uncertainty once, precisely.
+
+Final check before delivering: scan the draft for each pattern above by name. Finding two or more instances of any single pattern means a rewrite pass, not a spot fix.
 
 # Phase 3 — Output and self-review
 
