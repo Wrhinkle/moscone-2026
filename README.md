@@ -18,19 +18,21 @@ Jump to: [the company landscape](#the-company-landscape) · [the papers](#the-pa
 
 ## Why this exists
 
-The AI Engineer World's Fair ran June 30 to July 2, 2026, across three floors of Moscone West in San Francisco. 263 companies sponsored it. I came home with notes like "lights-off software factory," "Memex," and "tool calls for every aspect of computer usage," and no reliable memory of which of the four document-parsing vendors on the expo floor had actual customers.
+I spent June 30 to July 2 at the AI Engineer World's Fair in San Francisco. 263 companies sponsored it. My notes from those three days are a list of phrases like "lights-off software factory," "Memex," and "a game where every menu is a tool call." Good phrases. But by the flight home I couldn't have told you which of the four document-parsing vendors I talked to had real customers, and that was the one thing I'd actually wanted to know.
 
-That memory problem is normal after a conference. The fix I tried this year: turn the notes into a source list and have research agents work through the whole thing. One agent per company, digging up founders, funding history, what the product actually is, and whether anyone verifiably uses it. One agent per paper from my reading list. Then a pass to build navigation and a pass to draft essays about the ideas worth arguing over. 252 agents ran over about three days, interrupted twice by hotel wifi and once by a rate limit.
+That's the standard conference outcome: three days of pitches in, booth swag and a feeling out. So this year I tried converting the notes instead of losing them. I turned them into a source list and pointed research agents at it. One agent per company, digging up who founded it, what the product actually does, who pays for it, and whether anyone verifiably uses it. One agent per paper on my reading list. Then a pass to build the navigation you're reading, and a pass to draft essays about the ideas I couldn't put down. 252 agents, about three days of wall-clock time, two interruptions from hotel wifi and one from a rate limit.
 
-This repo is what they produced.
+This repo is what came out.
 
 ## How to read the profiles
 
-Claims in company profiles carry labels. **Verified** means multiple independent sources agree. **Reported** means a single source, often the vendor. When an agent couldn't confirm something, the profile says "not found in public sources" instead of guessing, and a few profiles for startups with un-Googleable names just describe the ambiguity and list the candidates.
+Every claim in a profile carries a label. **Verified** means at least two independent sources agree. **Reported** means one source, usually the vendor. When an agent couldn't confirm something, the profile says "not found in public sources" and moves on. A few companies with un-Googleable names (Band, Kimchi, Zero) get profiles that lay out the candidates and admit which one is probably the sponsor.
 
-Profiles weight usage evidence above funding news, because a published customer case study says more about a product than a Series B does. Where a research paper contradicts a vendor pitch, the profile links the paper. Everything was researched in the first week of July 2026, so treat funding figures and headcounts as a snapshot.
+The labels exist because funding news is easy to find and tells you little. What I wanted to know at every booth was simpler: does anyone use this? So profiles rank usage evidence above money. A published case study beats a logo wall. A public pricing page beats a waitlist. "Harvey replaced their OCR layer with Reducto and wrote about it" beats everything.
 
-One idea kept showing up in the notes, the papers, and the booth demos: the systems that work are loops. Observe, condense, decide, act through tools, check the result, hand risky calls to a human. Most category READMEs point back to whichever part of that loop their vendors sell.
+The research is a snapshot of the first week of July 2026. Funding figures rot in months. The idea below rots slower.
+
+That idea kept showing up in the notes, the papers, and the demos: the systems that work are loops. Watch something, condense it, decide, act through tools, check the result, hand the risky calls to a human. A coding agent is that loop pointed at a repo. A back-office intake clerk is the same loop pointed at invoices. Most category READMEs tell you which piece of the loop their vendors sell.
 
 ## The company landscape
 
@@ -112,7 +114,7 @@ A fleet of Claude Code agents worked from one seed document. Their definitions l
 | [blog-ideator](.claude/agents/blog-ideator.md) | Turned the source map into ranked blog briefs | [`briefs/`](briefs/) |
 | [blog-drafter](.claude/agents/blog-drafter.md) | Grew briefs into full drafts, grounded in the profiles and paper notes | [`blog/drafts/`](blog/drafts/) |
 
-One deterministic workflow script drove all 252 agents. It broke three times: hotel wifi died mid-run, the host session restarted, and a rate limit killed 102 agents at once. Each time it resumed from a journal of completed work without repeating any research. The one real bug was a classifier that matched companies by name and filed 21 of them in the wrong folder. A cleanup agent re-read those profiles and re-filed them by what the companies actually do.
+One deterministic workflow script drove all 252 agents. It broke three times: hotel wifi died mid-run, the host session restarted, and a rate limit killed 102 agents at once. No research was lost or repeated any of the three times, because the workflow journals every completed agent and resumes from the journal. The best bug was the classifier. It matched companies by name, so 21 of them landed in the consumer-ai folder, including Daily (voice infrastructure) and Circle (the USDC company). A cleanup agent re-read those profiles and re-filed the companies by what they do instead of what they're called.
 
 ### Caveats
 

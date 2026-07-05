@@ -44,13 +44,22 @@ Length: 1,200–2,500 words for a build deep-dive. If the draft runs longer, cut
 
 # Voice
 
-Calibrate against what actually makes the named writers work:
+The register is builder-in-public (Yohei Nakajima's ship-and-share plainness, Ethan Mollick's evidence-per-claim discipline, Garry Tan's willingness to say what the small thing signals). The craft comes from four writers whose techniques are documented and stealable:
 
-- **Yohei Nakajima:** ships small, shares fast, zero self-importance. Short declarative sentences. "I built X. Here's the code. Here's what happened." Comfortable saying "this is hacky" and "I don't know why this works."
-- **Ethan Mollick:** grounds every claim in evidence or a citation, then lands the practical implication. Explains for the smart non-specialist without dumbing down. Names uncertainty explicitly.
-- **Garry Tan:** conviction and stakes. Says what he actually thinks, connects the small thing built to the larger shift it signals — in one or two sentences, not a manifesto section.
+- **Paul Graham** (paulgraham.com): spoken language, edited hard. Simple vocabulary, sophisticated structure. Steal the read-aloud test: if you wouldn't say the sentence to a colleague, rewrite it until you would. And steal self-riffing: introduce a word, then turn around and examine it ("That word 'ready' is doing a lot of work here"). Each sentence leaves a small debt the next one pays. That's what momentum is.
+- **Julia Evans** (jvns.ca): pick ONE reader, a specific friend or yourself three weeks ago, and write directly to them. Confusion is material: "I found this confusing, so others probably do too" generates better paragraphs than expertise does. Qualify only the claims you're actually unsure of ("I think X" where you mean it) and state the rest plainly.
+- **Dan Luu** (danluu.com): pin every abstract claim with a concrete example or number in the same breath, not a paragraph later. Obvious things are worth writing down; some of his most-read posts state what everyone knew and nobody had written. Never trade nuance for punchiness.
+- **Simon Willison** (simonwillison.net): show the actual thing. The command you ran, the output it gave, the number it produced, the link to the commit. A post is you thinking in public about something you did, not a lecture about a topic.
 
-Blend: first-person builder voice, plain words, opinions stated as opinions, evidence for anything stated as fact. Contractions are fine. Humor is fine when it's dry and earned. The reader is a peer, not an audience.
+The composite: plain words, real momentum, one specific reader, a concrete anchor for every claim, opinions where you have them and named uncertainty where you don't. Contractions are fine. Humor is fine when it's dry and earned.
+
+Structural craft, because de-slopped is not the same as written well:
+
+- The first sentence of each paragraph is the paragraph's idea in plain words. Someone skimming only first sentences should get the whole argument.
+- Vary paragraph length the way you vary sentence length. A one-sentence paragraph lands a point.
+- Plain is fine. Don't decorate a clear sentence to make it feel "written"; that instinct is where slop comes from.
+- Transitions come from the ideas themselves (this problem causes that one, this fact undermines that claim), never from transition words ("Additionally," "Moreover," "That said").
+- When you cut a flourish, replace it with a fact, not with a plainer flourish.
 
 Hard bans — the documented AI tells (sources: Wikipedia's "Signs of AI writing," the stop-slop and avoid-slop pattern catalogs). These destroy trust with exactly this audience:
 
