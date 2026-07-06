@@ -8,10 +8,10 @@
 <img alt="263 company profiles" src="https://img.shields.io/badge/company_profiles-263-2f81f7?style=flat-square">
 <img alt="17 categories" src="https://img.shields.io/badge/categories-17-2f81f7?style=flat-square">
 <img alt="40 paper notes" src="https://img.shields.io/badge/paper_notes-40-2f81f7?style=flat-square">
-<img alt="11 session recaps" src="https://img.shields.io/badge/session_recaps-11-2f81f7?style=flat-square">
+<img alt="137 talk notes" src="https://img.shields.io/badge/talk_notes-137-2f81f7?style=flat-square">
 </p>
 
-Jump to: [companies](#the-company-landscape) · [papers](#the-papers) · [sessions](#the-sessions) · [if you're building X, read Y](#if-youre-building-x-read-y) · [method](#method)
+Jump to: [companies](#the-company-landscape) · [papers](#the-papers) · [talks](#the-talks) · [sessions](#the-sessions) · [if you're building X, read Y](#if-youre-building-x-read-y) · [method](#method)
 
 </div>
 
@@ -21,9 +21,10 @@ The AI Engineer World's Fair ran June 30 to July 2, 2026 at Moscone West in San 
 
 - [`companies/`](companies/) — a researched profile of every sponsor: founders, funding, what the product actually is, and evidence that anyone uses it, organized into 17 category folders
 - [`papers/`](papers/) — notes on 40 recent research papers in agentic AI, graded by evidence strength, organized into 5 areas
+- [`talks/`](talks/) — notes on 134 recorded talks plus the three in-person keynote-stage livestreams, each crediting the speaker and linking the video, built from the [AI Engineer YouTube channel](https://www.youtube.com/@aidotengineer)
 - [`notes/`](notes/) — [recaps of conference sessions](notes/session-recaps.md) and the [source map](notes/source-map-aiewf-2026.md) the research started from
 
-The three layers link to each other. Vendor claims sit next to the research that supports or undercuts them, and session recaps point into the company categories they touched.
+The layers link to each other. Vendor claims sit next to the research that supports or undercuts them, talk notes point into the profiles of the companies presenting, and session recaps cross-reference the livestream digests of the same days.
 
 ## How to read the profiles
 
@@ -68,6 +69,12 @@ Forty notes in five areas. Each area README suggests a reading order, grades the
 | [voice-realtime](papers/voice-realtime/README.md) | 9 | Realtime voice is an architecture problem before it is a model problem: overlap pipeline stages or lose the latency budget. Models systematically over-trigger, so suppression logic belongs in your application layer. |
 | [tool-use-governance](papers/tool-use-governance/README.md) | 7 | Governance enforced outside the model beats governance the model is asked to follow, and it often improves task success at the same time. Policy checkpoints, injection-proof architectures, syscall sandboxing, state-based verification. |
 | [planning-architecture](papers/planning-architecture/README.md) | 6 | The binding constraint is upstream of codegen. Plans drift unless re-injected, restructuring the spec beats better tooling, and prompts are unreviewed architectural artifacts. |
+
+## The talks
+
+[talks/](talks/) documents the recorded talks from the AI Engineer YouTube channel: 134 individual talk notes plus digests of the three in-person keynote-stage livestreams, each crediting the speaker and linking the video with timestamps. The talks README groups the standouts by theme and carries the full alphabetical index; the summaries were written from auto-captions and note where a name or number is uncertain.
+
+One finding surfaced in talk after talk, which is that the harness around the model now moves outcomes more than the model does. Etsy's HarnessBench measured a 24-point swing from the harness alone, Kaggle found harness choice shifts SWE-bench Pro results 22% while frontier models sit within a couple points of each other, and Microsoft showed a state-machine harness letting a Haiku-class model replace Opus in a live voice tutor. The talk notes cross-link into the [company profiles](companies/) of the presenters and, where the same day was attended in person, into the [session recaps](notes/session-recaps.md).
 
 ## The sessions
 

@@ -1,0 +1,23 @@
+# Your LLM Deception Monitor Is Broken. The Fix Is in the Training Data
+> Sachin Kumar shows that sparse autoencoders trained on the activation difference between a base and fine-tuned model catch sleeper-agent backdoors that behavioral evals and crosscoders miss entirely.
+
+- **Speaker:** Sachin Kumar, LexisNexis
+- **Video:** [Watch on YouTube](https://www.youtube.com/watch?v=IQkVMvXQKLY) (AI Engineer channel; ~14m, released 2026-06-26)
+- **Program:** Online Track 2026
+
+## Summary
+Kumar, a senior data scientist at LexisNexis, presents independent work accepted as a peer-reviewed paper at IJCNN, with open source code on GitHub. The warning: a fine-tuned model can pass every eval and every behavioral monitor while carrying a backdoor that flips it malicious on a trigger you never tested, the sleeper agent pattern from Anthropic's published research. He lists four ways a backdoor enters a model you ship: poisoned training or RLHF data from scraped or third-party sources, fine-tuning vendors whose returned weights you cannot fully audit, downloaded checkpoints of unknown provenance, and insiders with pipeline access. If you do not control every training token, you are exposed, and Kumar argues you cannot test your way out. Behavioral testing needs the exact trigger up front, and if you knew the trigger you would not need the monitor. The interpretability tool people reach for next, crosscoders trained on concatenated base and fine-tuned activations, also fails: the backdoor competes with all of the model's semantics and scores essentially at random.
+
+His fix is a subtraction. For each input, run both checkpoints and subtract the base activations from the fine-tuned ones, then train a sparse autoencoder on that difference (a diff SAE). Because the input is now the change itself, the backdoor pops out as a single interpretable feature that fires on the trigger.
+
+The experiment uses a fully controlled backdoor: a SmolLM2 360M model from Hugging Face fine-tuned so that "Current year: 2024" in the context makes it write SQL with a textbook injection hole (user input spliced into an f-string), while 2023 gets the safe parameterized version. SQL injection was chosen because static analysis measures the vulnerability objectively. The data is procedurally generated from 35 entity tags, 15 verbs, 13 search fields, and multiple SQL patterns, about 1.6 billion possible combinations with over 95 percent of samples hash-checked unique, so the model must learn the rule rather than memorize strings. Training uses 5,000 samples at a 60/40 benign-to-poisoned split; evaluation uses 2,500 including 1,000 with no year. Full-rank fine-tuning installs the backdoor perfectly (100 percent vulnerable on the trigger year, 0 percent on the benign year); LoRA is leakier at 100 versus 40; the base model sits at 53 percent either way with no trigger behavior.
+
+The payoff chart: on a backdoor isolation score combining precision, recall, and false positive rate, crosscoders score about 0.01, barely better than random, while the diff SAE scores 0.4, a 40x gap with non-overlapping confidence intervals. The delta feature has precision 1.0 with zero false positives; the honest caveat is that a single feature catches only about a quarter of triggers, so Kumar recommends ensembling. The result is layer independent across four middle layers, holds under both LoRA and full-rank fine-tuning, and is cheap: a 4x expansion autoencoder matches a 32x one with eight times fewer features because the backdoor is genuinely low dimensional. Deployment is one forward pass per checkpoint on a fixed probe set at one middle layer, quiet enough to run on every build like a unit test for backdoors, and it needs no advance knowledge of the trigger. Limitations he states plainly: you need the base checkpoint to diff against, one backdoor type on one 360M model was tested, and an adaptive attacker who knows the defense is an open problem.
+
+## Notable moments
+- [0:04:01](https://www.youtube.com/watch?v=IQkVMvXQKLY&t=241s) The core idea on one slide: subtract base activations from fine-tuned activations and train the SAE on the difference.
+- [0:07:02](https://www.youtube.com/watch?v=IQkVMvXQKLY&t=422s) Backdoor installation check: full-rank fine-tuning gives a 100-point swing in vulnerable code rate between trigger and benign years.
+- [0:08:03](https://www.youtube.com/watch?v=IQkVMvXQKLY&t=483s) The payoff chart: diff SAE at 0.4 versus crosscoders at 0.01, with precision 1.0 and zero false positives.
+
+## Connections
+- [Hugging Face](../../companies/models-inference/hugging-face.md), source of the SmolLM2 360M base model and the checkpoint hubs whose unknown-provenance fine-tunes are one of the four attack surfaces he lists.

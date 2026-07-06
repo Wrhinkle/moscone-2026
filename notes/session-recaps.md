@@ -5,6 +5,12 @@ reconstructed from notes taken in the room. Attributions and details may be impe
 speaker's name wasn't captured, the recap names the organization. Corrections welcome via issue
 or PR.
 
+Several of these sessions were also livestreamed and are covered in more detail, from the video,
+in the talk digests: [Day 2](../talks/live/day2-software-factories.md),
+[Day 3](../talks/live/day3-autoresearch.md), and
+[Day 4](../talks/live/day4-harness-engineering.md). The Sonar, DeepMind, DSPy, Homa, Anthropic,
+Vercel, and Garry Tan items below have matching segments there.
+
 ## Sonar — agent-centric development and whether AI-assisted coding delivers
 
 Referenced a Carnegie Mellon study on whether AI-assisted coding delivers, and drew a distinction

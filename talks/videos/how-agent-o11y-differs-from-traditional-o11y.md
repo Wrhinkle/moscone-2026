@@ -1,0 +1,26 @@
+# How agent o11y differs from traditional o11y
+> Phil Hetzel argues agent observability is a different systems problem than traditional observability, from non-deterministic paths to gigabyte traces and non-technical evaluators.
+
+- **Speaker:** Phil Hetzel, Braintrust
+- **Video:** [Watch on YouTube](https://www.youtube.com/watch?v=XBaznoTRDFI) (AI Engineer channel; ~21m, released 2026-05-28)
+- **Program:** AI Engineer 2026 release, program placement unconfirmed
+
+## Summary
+Phil Hetzel, who leads solutions engineering at Braintrust after 12 years in consulting and running Slalom's global Databricks practice, gives a deliberately theoretical talk on why agent observability differs from traditional observability. He frames Braintrust as an agent quality platform that answers two questions: is your agent performing as well as expected in production, and can you become confident as you tweak new versions. His thesis is that the building blocks look the same, metrics, traces, and spans, but the scope is fundamentally different.
+
+Traditional observability, he says, is established, operates at scale, and is about uptime and technical performance: latency, interaction duration, 400 and 500 level errors, whether the system is up or down. Braintrust itself is a happy Datadog user for exactly that. The first difference is determinism. Applications follow known, deterministic code paths on purpose, while agents are non-deterministic, and the reason people love LLMs, their high variety, is what makes their paths worth investigating. Traditional observability focuses on constrained, known metrics; agent observability must be broader. Agent observability can still measure traditional-feeling metrics like time to first token, total tokens, duration, and latency, but it also has to measure qualitative things: was the response grounded in the gathered context, did the agent use the expected tools while reasoning, was the response aligned to the brand standard set in the system prompt. Those require far more information in the trace than a traditional observability trace carries.
+
+The second difference is that agent traces are, in his word, nasty. They are highly semi-structured with large amounts of unstructured text, and voluminous, an individual trace can exceed a gigabyte and a single span can be 20 megabytes. They also have to arrive as fast as traditional observability data, in true real time, because engineers and product managers want to see interactions instantly, and the constant customer feedback is to make it faster. Braintrust built a database from the ground up for this workload. Hetzel describes a write-ahead log so traces appear immediately, indexing for fast filtering and analytical queries, and a Tantivy index, a Rust full-text search framework similar to Apache Lucene that they forked, to answer queries like "every trace containing the word Amazon," all unified through a SQL-like language. In the Q&A he notes they used to run ClickHouse but moved off it because it could not do the text-based indexing they needed at the time, and that their founder, an early SingleStore employee, was willing to build a database from scratch.
+
+The third difference is the persona. Traditional observability serves technical systems and product engineers, but the best agent teams bring in non-technical people, clinicians, registered nurses, wealth advisors, lawyers, who are closest to the users or the problem space and can now contribute in natural language through prompts and trace review. Hetzel treats observability and evals as the same problem, the only difference being that evals run in batch with known inputs while observability runs in real time on unknown inputs, and human annotation feeds justifications that later become scalable automated scoring functions. He closes on where the space is going: a feature rolled out about a month earlier that runs a lightweight LLM over incoming traces to embed and cluster them, surfacing how people use an agent, their intent, sentiment, and issues, to tighten the loop between a production problem and its fix.
+
+## Notable moments
+- [0:04:17](https://www.youtube.com/watch?v=XBaznoTRDFI&t=257s) Why non-determinism forces agent observability to measure broader, qualitative signals.
+- [0:07:21](https://www.youtube.com/watch?v=XBaznoTRDFI&t=441s) Agent traces over a gigabyte and single spans of 20 megabytes as a distinct systems problem.
+- [0:10:22](https://www.youtube.com/watch?v=XBaznoTRDFI&t=622s) The forked Tantivy full-text index that makes searching trace text fast.
+- [0:11:23](https://www.youtube.com/watch?v=XBaznoTRDFI&t=683s) Q&A on why they left ClickHouse to build their own database for text-heavy traces.
+
+## Connections
+- [Braintrust](../../companies/evals-observability/braintrust.md) is the speaker's employer and the agent quality platform the talk describes.
+- [Datadog](../../companies/evals-observability/datadog.md) is the traditional observability tool Hetzel contrasts against and still uses at Braintrust.
+- [Production Evals For Agentic AI Systems](./production-evals-for-agentic-ai-systems.md) makes the parallel argument that agent traces are the distributed tracing of autonomous workloads.

@@ -1,0 +1,23 @@
+# The UX of AI: Making AI-Powered Apps Your Users Don't Hate
+> Kathryn Grayson Nanz maps the widest developer-to-user knowledge gap she has seen onto five design pillars for AI features: trust, clarity, control, transparency, and meaningful benefit.
+
+- **Speaker:** Kathryn Grayson Nanz, Progress Software
+- **Video:** [Watch on YouTube](https://www.youtube.com/watch?v=L3RuP_q8Bwc) (AI Engineer channel; ~36m, released 2026-06-26)
+- **Program:** Online Track 2026
+
+## Summary
+Nanz, a senior design and developer advocate at Progress Software, argues that AI currently has a serious UX problem: users see AI features stuffed into everything, try them with only the barest idea how, get sub-par results, and disengage a little more each time. Concepts that are daily vocabulary for builders (prompting, hallucinations, RAG) mean nothing to most users, and she calls this developer-to-user knowledge gap the widest she has seen with any technology. Her historical frame is the Macintosh: System 1 met users where they were with turtle-and-rabbit speed icons and real-world metaphors, and by System 6 could say "RAM cache" because literacy had grown. She places AI interfaces at roughly System 3 in that arc: past the most literal abstractions, nowhere near expert users. She also explains why designers cannot delegate this to AI itself: generation only remixes existing patterns, and standardized AI interaction patterns do not exist yet, so AI-generated UI is an average starting point but not an ending point.
+
+From her user research she groups user problems into five categories and spends the talk on patterns for each. Trust: since nobody can promise hallucination-free output and most teams do not train their own models, she recommends "trust, but verify" mechanics instead of reassurance: citations via tooltips, inline links, or a side-panel reference view that positions the assistant as a librarian rather than an expert; plan approval before agentic work begins, as Claude and ChatGPT already do; and plainly marking AI-generated content so users never feel it was snuck past them. Clarity: streaming partial responses both disguises latency and lets users abort early; visible thinking-out-loud lets them pinpoint where a request went off the rails; highlighting changed content keeps autonomous agent actions trackable. Control: users need a prominent emergency brake, not a buried menu command, plus version history scaled to the task, from simple undo through checkpoints and save states, with granular selective rollback so a mixed-quality response does not force a full retry, which matters more as token costs tick up. Transparency: permissions are not binary (read a database versus delete tables, read email versus send it) and not one-and-done; users need a visible history of grants they can revoke, memory they can inspect and erase, cost and time estimates before approving an action, and an unmistakable visual signal, like a banner or outline, when an agent is driving their browser. Meaningful benefit: a blank "ask AI" text box demands too much literacy, so provide examples, templates, suggested prompts, and next-step action buttons that push output into documents, repos, or ticket systems.
+
+Her closing claim is competitive: the models are already good and keep improving, so performance is no longer the differentiator for AI-powered software. The quality of the experience around the model is, and those UX questions now belong to developers whether or not their title says designer.
+
+## Notable moments
+- [0:03:02](https://www.youtube.com/watch?v=L3RuP_q8Bwc&t=182s) The Macintosh System 1 versus System 6 control panel comparison, and the claim that AI UX is at "about System 3."
+- [0:07:04](https://www.youtube.com/watch?v=L3RuP_q8Bwc&t=424s) Why AI cannot design its own interfaces yet: it remixes existing patterns, and AI interaction patterns do not exist to remix.
+- [0:23:11](https://www.youtube.com/watch?v=L3RuP_q8Bwc&t=1391s) The control section: the big red emergency brake, safe exploration from Nielsen's heuristics, and version history as a non-negotiable for non-deterministic output.
+- [0:27:13](https://www.youtube.com/watch?v=L3RuP_q8Bwc&t=1633s) Permissions gray zones: read versus delete, once versus always, one folder versus all folders, approve but notify.
+
+## Connections
+- [CopilotKit](../../companies/agent-orchestration/copilotkit.md), which builds the in-app agent UI layer where these chat, streaming, and approval patterns get implemented.
+- [HumanLayer](../../companies/agent-orchestration/humanlayer.md), whose human-in-the-loop approval tooling maps directly to her plan-approval and permission-granting patterns.

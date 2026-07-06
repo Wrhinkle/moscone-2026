@@ -1,0 +1,24 @@
+# Build the AI GTM Agent That Knows the Buyer
+> Sajjan Kanukolanu lays out a three-layer agent architecture (signals, buyer intelligence, action) that identifies anonymous website visitors and personalizes outreach before a sales rep ever gets involved.
+
+- **Speaker:** Dr. Sajjan Kanukolanu, Position2 (Position Squared)
+- **Video:** [Watch on YouTube](https://www.youtube.com/watch?v=ltv-L5oMPIs) (AI Engineer channel; ~26m, released 2026-06-26)
+- **Program:** Online Track 2026
+
+## Summary
+Kanukolanu, VP of global operations and strategy at Position2, opens with the uncomfortable truth of modern B2B selling: by the time a buyer contacts you, the decision is mostly made. He cites Forrester 2026 research that 94 percent of buyers use generative AI as their primary research tool, plus stats that 67 percent of B2B buyers prefer a rep-free experience, 80 percent of deals go to vendors on the buyer's pre-contact list, and only 17 percent of total buying time is spent talking to vendors. His credibility numbers: Position2 has launched 75-plus AI agents for clients, backed by 18-plus vertical knowledge bases, running 800-plus times per month as of June 2026.
+
+His central claim is that bolting AI onto an existing GTM stack cannot scale, because three problems must be solved together: AI alone cannot know who the buyer is, old stacks cannot capture and merge the intent signals, and the architecture itself has to be rebuilt with AI at the core. The tell is the chat window that greets a late-stage, fully researched buyer with "How can I help you?", which he says moves the conversation backwards and drives the visitor away.
+
+The architecture has three layers. Signals: CRM deal and contact data, enrichment of anonymous visitors, and social signals, especially LinkedIn engagement and job changes; his example is an executive sponsor leaving a current account, which should automatically add their new company to the account list. Buyer intelligence: a knowledge base holding product context, ICPs, personas, and playbooks; visitor de-anonymization; ICP scoring that separates fit from buying stage; a context builder; and routing logic that decides whether a contact gets a LinkedIn touch, an email, or an ad. Action: a chat that greets a returning visitor by name and offers to resume their prior conversation, calibrated Slack alerts to reps with context and a draft email, CRM updates that carry account context rather than just call notes, and sequence triggers. Everything rolls into a per-buyer context graph linking person, account, and deal, which surfaces buying committees and lets the team rank high-intent accounts. The implementation chains agents: multiple identification tools run in parallel because no single vendor catches every visitor, then enrichment, an ICP filter that deletes wrong-industry or wrong-geo contacts, a match agent that checks CRM warmth, and an action agent that decides the outreach per person or per buying committee. His demo dashboard shows about 3,000 de-anonymized visitors from roughly 280 accounts, and a LinkedIn view of 100 visitors from 73 companies engaging with eight posts.
+
+He is candid about what breaks. ICPs drift, so agents should be retrained quarterly on closed-won and closed-lost deals. Alert fatigue kills trust if everything is flagged hot. There is an identity ceiling in current tools: a bit over 70 percent accuracy identifying companies but only 15 to 20 percent for individuals, a structural limit to plan around. And the human bottleneck: if editing an AI-drafted email takes longer than about 30 seconds, reps will write their own and the initiative dies. His takeaways: start with identity, score fit and intent separately, build an auditable policy engine a GTM team can fix without a developer, and feed every send, reply, and closed deal back into the knowledge base so the flywheel compounds.
+
+## Notable moments
+- [0:03:01](https://www.youtube.com/watch?v=ltv-L5oMPIs&t=181s) The buyer stats: 94 percent research with GenAI, 67 percent want rep-free buying, 80 percent of deals go to the pre-contact list.
+- [0:11:08](https://www.youtube.com/watch?v=ltv-L5oMPIs&t=668s) The context graph: person, account, and deal signals in one connected record that surfaces the buying committee.
+- [0:18:11](https://www.youtube.com/watch?v=ltv-L5oMPIs&t=1091s) Dashboard demo: about 3,000 anonymous visitors de-anonymized across 280 accounts, with hot-signal ranking.
+- [0:22:13](https://www.youtube.com/watch?v=ltv-L5oMPIs&t=1333s) The identity ceiling: 70 percent accuracy on companies, 15 to 20 percent on individuals, and the 30-second email edit rule.
+
+## Connections
+- [LinkedIn](../../companies/enterprise-adopters/linkedin.md), the platform Kanukolanu calls the most underused GTM signal source, supplying engagement and job-change data to the architecture's signals layer.

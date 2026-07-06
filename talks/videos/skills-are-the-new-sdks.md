@@ -1,0 +1,26 @@
+# Skills are the New SDKs
+> Elvin Aghammadzada argues that agent skills, not MCP servers, are becoming the way platforms teach agents to use them, turning "teachability" into a new enterprise moat.
+
+- **Speaker:** Elvin Aghammadzada, DataRobot
+- **Video:** [Watch on YouTube](https://www.youtube.com/watch?v=LC3-P7v3yoI) (AI Engineer channel; ~27m, released 2026-06-26)
+- **Program:** Online Track 2026
+
+## Summary
+Aghammadzada starts from what he calls the beautiful lie of infinite context windows. Vendors promise 1 million, 5 million, or unbounded tokens, which tempts builders to dump whole document sets or 100 tool definitions into context and expect the model to cope. He cites the context rot finding that performance starts degrading after about 25 percent of the window is used, and describes a "smart zone" up to roughly 40 percent utilization, past which responses get noticeably worse. His point is that many agents burn that budget before the first user message: with system instructions plus a stack of MCP servers, a session can start in the dumb zone. He puts a number on it, saying an agent connected to 15 MCP servers can consume over 100,000 tokens per session in tool definitions alone. He also notes that traffic to documentation sites from coding agents jumped from 10 percent to 50 percent in a year, and docs written for humans assume intuition and follow-up abilities models lack.
+
+The middle of the talk is a strategy argument about moats. SaaS-era moats were friction: hardware, data, and integrations that made switching costly. Now that a coding agent can rewrite a million lines from Python to Rust, switching costs are collapsing, so he proposes fluency moats instead: skills that compound the experience of using a platform, minimizing friction between intent and outcome. He argues the enterprise evaluation checklist (security, compliance, data governance, SLAs, tracing, auth integration) gains a new item, teachability: how fast a fresh agent harness can pick up your platform's operational knowledge from a skill and get to a result in seconds. In that model you stop building one agent per industry; a general purpose agent is the engine and domain skills make it a supply chain agent or a manufacturing agent.
+
+He then contrasts skills and MCP, both Anthropic standards that solve different problems. Skills change how the agent thinks and can self-modify from experience; MCP provides authenticated, isolated, remotely hosted execution for things a laptop cannot do, like semantic search over hundreds of terabytes or GPU-heavy work. A co-presenter adds that a skill can expose, template, or even create and run an MCP server, and that current harnesses like Claude Code and Codex run on only a handful of tools anyway. Mechanically, a skill has three levels: front matter under 100 tokens that sits in context as an index, a markdown body under about 5,000 tokens loaded only on activation, and optional scripts that execute with only their output returned to context, a pattern he compares to database indexes.
+
+On the ecosystem, he counts 26-plus supporting platforms (Claude Code, Codex, Copilot, Gemini CLI), hundreds of thousands of published skills, paid marketplaces, and the viral OpenClaw repository as a demonstration of both the power and the risk: a coding agent with about 10 tools that writes its own skills. His cautions: recent research found LLM-generated skills actually hurt performance and burn more tokens than human-written ones, skills run unisolated on your machine, prompt injection through published skills is live (he points to the OpenClaw incidents in the news), and marketplaces lack verification, like npm ten years ago. His close: context is a budget, skills complement MCP for now, a skill is only as good as the human who wrote it, and skills are software that deserve versioning, evals, and tests.
+
+## Notable moments
+- [0:01:04](https://www.youtube.com/watch?v=LC3-P7v3yoI&t=64s) The infinite-context lie and the context rot result: degradation starts after about 25 percent of the window.
+- [0:04:06](https://www.youtube.com/watch?v=LC3-P7v3yoI&t=246s) Friction moats versus fluency moats: switching costs collapse when an agent can rewrite a million lines of code.
+- [0:13:13](https://www.youtube.com/watch?v=LC3-P7v3yoI&t=793s) The MCP token math: 15 servers can cost over 100,000 tokens per session before the conversation starts, versus roughly 10x less with progressive disclosure.
+- [0:24:26](https://www.youtube.com/watch?v=LC3-P7v3yoI&t=1466s) The caveat: research shows LLM-generated skills hurt performance, so humans still need to write them.
+
+## Connections
+- [Composio](../../companies/agent-orchestration/composio.md), a vendor in the tool-and-skill integration layer the talk says platforms will compete on.
+- [WebXSkill: skill learning for autonomous web agents](../../papers/tool-use-governance/webxskill-skill-learning-for-autonomous-web-agents.md), research on agents acquiring skills, the self-writing pattern Aghammadzada flags as both powerful and risky.
+- [The evolution of tool use in LLM agents](../../papers/tool-use-governance/the-evolution-of-tool-use-in-llm-agents-from-single-tool-ca.md), background on the tool-calling trajectory that skills and MCP now split between them.

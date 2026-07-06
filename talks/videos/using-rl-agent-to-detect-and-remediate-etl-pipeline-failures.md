@@ -1,0 +1,26 @@
+# Using RL Agent to Detect and Remediate ETL Pipeline Failures
+> A capstone system on AWS that pairs deterministic failure diagnosis with a small Q-learning policy and an external safety layer to auto-remediate Glue job failures.
+
+- **Speaker:** Anna Marie Benzon
+- **Video:** [Watch on YouTube](https://www.youtube.com/watch?v=LrGCT7G_rU8) (AI Engineer channel; ~15m, released 2026-06-29)
+- **Program:** Online Track 2026
+
+## Summary
+Benzon presents a capstone project on automating recovery from ETL pipeline failures, where the failure itself is often small but everything around it is expensive: inspection, diagnosis, choosing a safe fix, rerunning the job, and confirming the data is intact. She models the manual recovery baseline at roughly 2.5 working days as an incident moves through queueing, investigation, and approval. Her central question is whether an agent can act usefully, explainably, and within boundaries an operations team would actually trust, rather than whether it can act at all.
+
+The architecture is event-driven on AWS. A Glue job failure emits an event, EventBridge triggers a Lambda that runs the agent, and the agent gathers evidence from two read-only sources: CloudWatch error logs and the Glue Data Catalog schema. The intelligence layer deliberately separates three concerns. Deterministic components establish facts: a schema profiler, a drift detector comparing against a baseline, a data quality analyzer measuring completeness, validity, and consistency, an error classifier that maps log patterns into failure families, and a risk scorer. A learned policy handles contextual action selection over six bounded actions, including retry, schema correction, rollback, quarantine, escalate, and log. A safety layer sits outside the learned policy with final authority; it can convert a passive proposal into an escalation when the anomaly is critical, and every proposal, execution result, and validation outcome lands in an audit record. Benzon's design rule: rules for facts, learning for bounded choices, guards for authority.
+
+The policy uses tabular Q-learning over a compact state of failure category, risk level, and data quality conditions, modeling each incident as a single-step contextual decision rather than a long-horizon control task. She defends the small state and action space because the Q-table stays directly inspectable. Escalation is in the action space on purpose: an agent saying it should not act automatically is a capability, and if success is measured only by non-escalation the optimization target is wrong. A worked failure path shows a datetime format incompatibility classified at 0.9 confidence where the proposed schema correction turns out to be unavailable in the environment; the system reports the unavailability and flags the incident for manual review instead of pretending the fix happened.
+
+Results come from a public benchmark with generalized synthetic data (the client capstone used client-provided synthetic data; no client identifiers ship in the repository), evaluated across 30 seeded runs with 95% confidence intervals. The rule-based anomaly detector scores precision 1.0, recall 0.8, F1 0.889, which she reads as conservative. Resolved incidents take a mean of 5.24 minutes against the 2.5-day baseline, about a 99.85% reduction in MTTR. Simulated success rate is 74.63% plus or minus 1.51 points, non-escalation 88.63% plus or minus 0.89. Her most useful finding is negative in a productive way: the RL policy matches an equivalent hand-written deterministic policy within 0.19 points on this state space, while deterministic selection beats random by 15.63 points and the safety override deliberately lowers non-escalation by about 15.03 points. Reliability comes from state design and external constraints, and RL earns its keep only as incident history grows too rich to maintain preferences by hand. She closes with the validation boundary (synthetic scenarios, reactive rather than predictive, some actions simulated) and a shadow-mode deployment as the next step.
+
+## Notable moments
+- [0:03:06](https://www.youtube.com/watch?v=LrGCT7G_rU8&t=186s) The three-way separation: deterministic rules for facts, RL for bounded choices, safety guards for authority.
+- [0:06:09](https://www.youtube.com/watch?v=LrGCT7G_rU8&t=369s) Escalation as a first-class action, and why non-escalation is the wrong optimization target.
+- [0:09:12](https://www.youtube.com/watch?v=LrGCT7G_rU8&t=552s) The headline numbers: 5.24-minute mean resolution, 74.63% success, 88.63% non-escalation.
+- [0:10:14](https://www.youtube.com/watch?v=LrGCT7G_rU8&t=614s) The honest result: RL matches a hand-defined policy within 0.19 points on this compact state space.
+
+## Connections
+- [AWS](../../companies/cloud-compute/aws.md): the entire system runs on Glue, EventBridge, Lambda, and CloudWatch primitives from the AWS agent stack.
+- [Airbyte](../../companies/data-infrastructure/airbyte.md): the data-movement vendor whose pipelines are the kind of ETL surface this remediation pattern targets.
+- [Resolve.ai](../../companies/evals-observability/resolve-ai.md): commercial sibling of this design, agentic incident investigation and remediation inside explicit guardrails.
