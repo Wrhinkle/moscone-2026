@@ -1,38 +1,37 @@
 <div align="center">
 
-# The Moscone Landscape
+# AI Engineer World's Fair 2026: The Landscape
 
-### Company research, paper notes, and essays from the AI Engineer World's Fair 2026
+### Sponsor research, session recaps, and research-paper notes from AIEWF 2026, cross-linked into one reference
 
 <p>
 <img alt="263 company profiles" src="https://img.shields.io/badge/company_profiles-263-2f81f7?style=flat-square">
 <img alt="17 categories" src="https://img.shields.io/badge/categories-17-2f81f7?style=flat-square">
 <img alt="40 paper notes" src="https://img.shields.io/badge/paper_notes-40-2f81f7?style=flat-square">
-<img alt="5 essays" src="https://img.shields.io/badge/essays-5-2f81f7?style=flat-square">
-<img alt="built by 252 agents" src="https://img.shields.io/badge/built_by-252_agents-8957e5?style=flat-square">
+<img alt="11 session recaps" src="https://img.shields.io/badge/session_recaps-11-2f81f7?style=flat-square">
 </p>
 
-Jump to: [the company landscape](#the-company-landscape) · [the papers](#the-papers) · [if you're building X, read Y](#if-youre-building-x-read-y) · [the essays](#the-essays) · [how this was built](#how-this-was-built)
+Jump to: [companies](#the-company-landscape) · [papers](#the-papers) · [sessions](#the-sessions) · [if you're building X, read Y](#if-youre-building-x-read-y) · [method](#method)
 
 </div>
 
-## Why this exists
+## What this is
 
-I spent June 30 to July 2 at the AI Engineer World's Fair in San Francisco. 263 companies sponsored it. My notes from those three days are a list of phrases like "lights-off software factory," "Memex," and "a game where every menu is a tool call." Good phrases. But by the flight home I couldn't have told you which of the four document-parsing vendors I talked to had real customers, and that was the one thing I'd actually wanted to know.
+The AI Engineer World's Fair ran June 30 to July 2, 2026 at Moscone West in San Francisco, with 263 sponsor companies and a program dominated by agents: coding agents, evals, memory systems, voice, and the infrastructure underneath all of it. This repo is a reference for anyone trying to understand that ecosystem without having been there:
 
-That's the standard conference outcome: three days of pitches in, booth swag and a feeling out. So this year I tried converting the notes instead of losing them. I turned them into a source list and pointed research agents at it. One agent per company, digging up who founded it, what the product actually does, who pays for it, and whether anyone verifiably uses it. One agent per paper on my reading list. Then a pass to build the navigation you're reading, and a pass to draft essays about the ideas I couldn't put down. 252 agents, about three days of wall-clock time, two interruptions from hotel wifi and one from a rate limit.
+- [`companies/`](companies/) — a researched profile of every sponsor: founders, funding, what the product actually is, and evidence that anyone uses it, organized into 17 category folders
+- [`papers/`](papers/) — notes on 40 recent research papers in agentic AI, graded by evidence strength, organized into 5 areas
+- [`notes/`](notes/) — [recaps of conference sessions](notes/session-recaps.md) and the [source map](notes/source-map-aiewf-2026.md) the research started from
 
-This repo is what came out.
+The three layers link to each other. Vendor claims sit next to the research that supports or undercuts them, and session recaps point into the company categories they touched.
 
 ## How to read the profiles
 
-Every claim in a profile carries a label. **Verified** means at least two independent sources agree. **Reported** means one source, usually the vendor. When an agent couldn't confirm something, the profile says "not found in public sources" and moves on. A few companies with un-Googleable names (Band, Kimchi, Zero) get profiles that lay out the candidates and admit which one is probably the sponsor.
+Every claim in a profile carries a label. **Verified** means at least two independent sources agree. **Reported** means one source, usually the vendor. When a claim couldn't be confirmed, the profile says "not found in public sources" and moves on. A few companies with un-Googleable names (Band, Kimchi, Zero) get profiles that lay out the candidates and admit which one is probably the sponsor.
 
-The labels exist because funding news is easy to find and tells you little. What I wanted to know at every booth was simpler: does anyone use this? So profiles rank usage evidence above money. A published case study beats a logo wall. A public pricing page beats a waitlist. "Harvey replaced their OCR layer with Reducto and wrote about it" beats everything.
+The labels exist because funding news is easy to find and tells you little. The more useful question about any vendor is: does anyone use this? So profiles rank usage evidence above money. A published case study beats a logo wall. A public pricing page beats a waitlist. "Harvey replaced their OCR layer with Reducto and wrote about it" beats everything.
 
-The research is a snapshot of the first week of July 2026. Funding figures rot in months. The idea below rots slower.
-
-That idea kept showing up in the notes, the papers, and the demos: the systems that work are loops. Watch something, condense it, decide, act through tools, check the result, hand the risky calls to a human. A coding agent is that loop pointed at a repo. A back-office intake clerk is the same loop pointed at invoices. Most category READMEs tell you which piece of the loop their vendors sell.
+The research is a snapshot of the first week of July 2026. Funding figures rot in months; the category structure rots slower.
 
 ## The company landscape
 
@@ -70,17 +69,23 @@ Forty notes in five areas. Each area README suggests a reading order, grades the
 | [tool-use-governance](papers/tool-use-governance/README.md) | 7 | Governance enforced outside the model beats governance the model is asked to follow, and it often improves task success at the same time. Policy checkpoints, injection-proof architectures, syscall sandboxing, state-based verification. |
 | [planning-architecture](papers/planning-architecture/README.md) | 6 | The binding constraint is upstream of codegen. Plans drift unless re-injected, restructuring the spec beats better tooling, and prompts are unreviewed architectural artifacts. |
 
+## The sessions
+
+[notes/session-recaps.md](notes/session-recaps.md) has recaps of eleven talks and conversations from the program, reconstructed from notes taken in the room: Sonar on agent-centric development and zero-trust verification of AI-written code; Google DeepMind on RL, Rust, and what a programming language designed for LLMs would look like; Stanford PlatformLab on Homa, a transport protocol built for AI network loads; the DSPy team on AI programs as functions; Anthropic on interpretability and a six-step process for not handing off the work; Stephen Chin on GraphRAG and why vector similarity is not relational mapping; Yohei Nakajima on world models for long-running agents; NYT engineers on local agents for games; Vercel on eve ("Next.js for agents"); Garry Tan on the AI-native company; and AWS on Bedrock AgentCore.
+
+Themes that recurred across unrelated sessions, taken from the notes rather than imposed on them: verification discipline for agent-written code, memory that goes past vector similarity, and agent-native infrastructure (languages, transports, operating environments) as a wide-open design space.
+
 ## If you're building X, read Y
 
-Each trail walks from vendors to research to an essay.
+Each trail walks from vendors to research.
 
-**A back-office automation** (document intake, invoice or packet auditing, approval workflows). Start at [back-office-automation](companies/back-office-automation/README.md) for the extraction layer ([Reducto](companies/back-office-automation/reducto.md) vs. [Extend](companies/back-office-automation/extend.md) vs. [Bem](companies/back-office-automation/bem.md)) and the regulated-vertical pattern ([Anterior](companies/back-office-automation/anterior.md)). Wire the approval gate with [HumanLayer](companies/agent-orchestration/humanlayer.md) plus [Temporal](companies/agent-orchestration/temporal.md) or [Inngest](companies/agent-orchestration/inngest.md). The research backbone is [Governance by Construction](papers/tool-use-governance/governance-by-construction-for-generalist-agents.md) and [REAgent](papers/planning-architecture/reagent-requirement-driven-llm-agents-for-software-issue-re.md). The essays: [Stop Building Chatbots for the Back Office](blog/drafts/2026-07-02-stop-building-chatbots-for-the-back-office.md) and [Agents Should Prepare Decisions, Not Make Them](blog/drafts/2026-07-02-agents-should-prepare-decisions-not-make-them.md).
+**A back-office automation** (document intake, invoice or packet auditing, approval workflows). Start at [back-office-automation](companies/back-office-automation/README.md) for the extraction layer ([Reducto](companies/back-office-automation/reducto.md) vs. [Extend](companies/back-office-automation/extend.md) vs. [Bem](companies/back-office-automation/bem.md)) and the regulated-vertical pattern ([Anterior](companies/back-office-automation/anterior.md)). Wire the approval gate with [HumanLayer](companies/agent-orchestration/humanlayer.md) plus [Temporal](companies/agent-orchestration/temporal.md) or [Inngest](companies/agent-orchestration/inngest.md). The research backbone is [Governance by Construction](papers/tool-use-governance/governance-by-construction-for-generalist-agents.md) and [REAgent](papers/planning-architecture/reagent-requirement-driven-llm-agents-for-software-issue-re.md).
 
-**A voice agent.** [voice-realtime companies](companies/voice-realtime/README.md) covers the stack layers: telephony, then [LiveKit](companies/voice-realtime/livekit.md) or [Daily](companies/voice-realtime/daily.md) for transport, [Deepgram](companies/voice-realtime/deepgram.md) or [AssemblyAI](companies/voice-realtime/assemblyai.md) for speech, and [Vapi](companies/voice-realtime/vapi.md) if you'd rather buy the whole loop. Then [papers/voice-realtime](papers/voice-realtime/README.md) for the Salesforce reference architecture (a ~755ms budget) and the τ-Voice result that voice keeps only 30 to 45% of text capability. QA with [Hamming AI](companies/evals-observability/hamming-ai.md). The essay: [The Voice Agent Latency Budget](blog/drafts/2026-07-02-the-voice-agent-latency-budget.md).
+**A voice agent.** [voice-realtime companies](companies/voice-realtime/README.md) covers the stack layers: telephony, then [LiveKit](companies/voice-realtime/livekit.md) or [Daily](companies/voice-realtime/daily.md) for transport, [Deepgram](companies/voice-realtime/deepgram.md) or [AssemblyAI](companies/voice-realtime/assemblyai.md) for speech, and [Vapi](companies/voice-realtime/vapi.md) if you'd rather buy the whole loop. Then [papers/voice-realtime](papers/voice-realtime/README.md) for the Salesforce reference architecture (a ~755ms budget) and the τ-Voice result that voice keeps only 30 to 45% of text capability. QA with [Hamming AI](companies/evals-observability/hamming-ai.md).
 
-**Adopting coding agents.** [coding-agents](companies/coding-agents/README.md) for the generate/verify split, then [swe-infrastructure](companies/swe-infrastructure/README.md) for what makes the output shippable: sandboxes ([E2B](companies/swe-infrastructure/e2b.md), [Daytona](companies/swe-infrastructure/daytona.md)), verification ([Sonar](companies/swe-infrastructure/sonar.md)), codebase context ([Unblocked](companies/swe-infrastructure/unblocked.md)). Calibrate expectations with [papers/swe-agents](papers/swe-agents/README.md), especially the benchmark-misalignment position paper, and read how [Optiver](companies/enterprise-adopters/optiver.md) and [Block](companies/enterprise-adopters/block.md) did it in production. The essay: [Your Coding Agent Has Never Seen a Codebase Like Yours](blog/drafts/2026-07-02-your-coding-agent-has-never-seen-a-codebase-like-yours.md).
+**Adopting coding agents.** [coding-agents](companies/coding-agents/README.md) for the generate/verify split, then [swe-infrastructure](companies/swe-infrastructure/README.md) for what makes the output shippable: sandboxes ([E2B](companies/swe-infrastructure/e2b.md), [Daytona](companies/swe-infrastructure/daytona.md)), verification ([Sonar](companies/swe-infrastructure/sonar.md)), codebase context ([Unblocked](companies/swe-infrastructure/unblocked.md)). Calibrate expectations with [papers/swe-agents](papers/swe-agents/README.md), especially the benchmark-misalignment position paper, and read how [Optiver](companies/enterprise-adopters/optiver.md) and [Block](companies/enterprise-adopters/block.md) did it in production.
 
-**A memory system.** [memory-rag-search](companies/memory-rag-search/README.md) lays out the stack: stores, memory layers, web acquisition, enrichment. [Zep AI](companies/memory-rag-search/zep-ai.md) and [Cognee](companies/memory-rag-search/cognee.md) are the purpose-built memory layers, with [Qdrant](companies/memory-rag-search/qdrant.md) and [Neo4j](companies/memory-rag-search/neo4j.md) underneath. Before committing to an architecture, read the agent-native memory survey in [papers/memory-research-agents](papers/memory-research-agents/README.md) and LinkedIn's production memory paper. The essay: [Building the Memex, 80 Years Late](blog/drafts/2026-07-02-building-the-memex-80-years-late.md).
+**A memory system.** [memory-rag-search](companies/memory-rag-search/README.md) lays out the stack: stores, memory layers, web acquisition, enrichment. [Zep AI](companies/memory-rag-search/zep-ai.md) and [Cognee](companies/memory-rag-search/cognee.md) are the purpose-built memory layers, with [Qdrant](companies/memory-rag-search/qdrant.md) and [Neo4j](companies/memory-rag-search/neo4j.md) underneath. Before committing to an architecture, read the agent-native memory survey in [papers/memory-research-agents](papers/memory-research-agents/README.md) and LinkedIn's production memory paper. The GraphRAG session recap covers why traversal auditability matters for orchestration.
 
 **An eval stack.** [evals-observability](companies/evals-observability/README.md): [Arize](companies/evals-observability/arize.md) vs. [Braintrust](companies/evals-observability/braintrust.md) for the core loop, [Datadog](companies/evals-observability/datadog.md) for the incumbent argument. From the papers, take the eval-hygiene checklist in [swe-agents](papers/swe-agents/README.md), the verifier-beats-LLM-judge result (94.2% vs. 79.2% human agreement) in [tool-use-governance](papers/tool-use-governance/README.md), and the plan-compliance metrics in [planning-architecture](papers/planning-architecture/README.md).
 
@@ -88,34 +93,14 @@ Each trail walks from vendors to research to an essay.
 
 **Agents that spend money.** [fintech-payments](companies/fintech-payments/README.md) for the protocol fight ([Stripe](companies/fintech-payments/stripe.md), [PayPal](companies/fintech-payments/paypal.md), [Circle](companies/fintech-payments/circle.md), [Coinbase](companies/fintech-payments/coinbase.md)) and the budget-enforcement layer ([Stigg](companies/fintech-payments/stigg.md), [Revenium](companies/fintech-payments/revenium.md)).
 
-## The essays
+## Method
 
-Five drafts written from this research. Each bridges several categories and at least one paper. They carry `draft: true` honestly; `TODO: verify` flags mark claims still being checked.
-
-| Essay | The argument |
-|---|---|
-| [Stop Building Chatbots for the Back Office](blog/drafts/2026-07-02-stop-building-chatbots-for-the-back-office.md) | Back-office AI works better as an evaluator: messy context in, structured state and missing items and human-approvable next actions out. Chat is a poor interface for work that has a checklist. |
-| [Agents Should Prepare Decisions, Not Make Them](blog/drafts/2026-07-02-agents-should-prepare-decisions-not-make-them.md) | The approval gate is an engineering primitive. Durable-workflow engines built for microservices turn out to be the right substrate for human-speed decisions. |
-| [Your Coding Agent Has Never Seen a Codebase Like Yours](blog/drafts/2026-07-02-your-coding-agent-has-never-seen-a-codebase-like-yours.md) | Benchmarks are greenfield and your codebase isn't. The gap is codebase comprehension, and a whole vendor tier exists because of it. Includes a self-benchmark recipe. |
-| [Building the Memex, 80 Years Late](blog/drafts/2026-07-02-building-the-memex-80-years-late.md) | Vannevar Bush's 1945 associative-trails machine is now a weekend build from commodity parts. The hard part is deciding what deserves memory. |
-| [The Voice Agent Latency Budget](blog/drafts/2026-07-02-the-voice-agent-latency-budget.md) | Voice agents live or die inside roughly 800ms mouth-to-ear, and every architectural choice spends part of that budget. Five papers read as one debugging checklist. |
-
-The unwritten backlog is in [`briefs/`](briefs/2026-07-02-aiewf-batch-01.md): ten idea briefs with theses, outlines, and demo tie-ins. The raw inputs are in [`notes/`](notes/), including the [source map](notes/source-map-aiewf-2026.md) and the [original pocket notes](notes/conference-notes-raw.md), typos included.
-
-## How this was built
-
-A fleet of Claude Code agents worked from one seed document. Their definitions live in [`.claude/agents/`](.claude/agents/), so the repo documents its own construction. Point the same agents at a different source map (next year's sponsor list, a reading list, your own market) and you get a different landscape.
+A fleet of Claude Code research agents built this repo from the seed document in [`notes/`](notes/source-map-aiewf-2026.md): one agent per company, one per paper, then curation passes for the navigation. The agent definitions are in [`.claude/agents/`](.claude/agents/), so the repo documents its own construction and can be rebuilt against a different source (next year's sponsor list, a different conference, a reading list).
 
 | Agent | Role | Output |
 |---|---|---|
 | [company-researcher](.claude/agents/company-researcher.md) | Researched each sponsor: founders, funding, product, verified vs. reported claims | `companies/<category>/<company>.md` |
 | [paper-analyst](.claude/agents/paper-analyst.md) | Located and annotated each paper, with evidence-strength grades | `papers/<area>/<paper>.md` |
 | [landscape-curator](.claude/agents/landscape-curator.md) | Built the category and area READMEs and this page | the `README.md` files |
-| [blog-ideator](.claude/agents/blog-ideator.md) | Turned the source map into ranked blog briefs | [`briefs/`](briefs/) |
-| [blog-drafter](.claude/agents/blog-drafter.md) | Grew briefs into full drafts, grounded in the profiles and paper notes | [`blog/drafts/`](blog/drafts/) |
 
-One deterministic workflow script drove all 252 agents. It broke three times: hotel wifi died mid-run, the host session restarted, and a rate limit killed 102 agents at once. No research was lost or repeated any of the three times, because the workflow journals every completed agent and resumes from the journal. The best bug was the classifier. It matched companies by name, so 21 of them landed in the consumer-ai folder, including Daily (voice infrastructure) and Circle (the USDC company). A cleanup agent re-read those profiles and re-filed the companies by what they do instead of what they're called.
-
-### Caveats
-
-Research dates: July 2 to 5, 2026. The agents had web search and explicit rules against fabrication, but agents miss things and sources disagree. Some profiles say "could not disambiguate" or "not found in public sources," which is working as intended. If you find an error, open an issue or a PR.
+Caveats, plainly: research dates are July 2 to 5, 2026. The agents had web search and explicit rules against fabrication, but automated research misses things and sources disagree. Some profiles say "could not disambiguate" or "not found in public sources," which is working as intended. Session recaps are reconstructed from notes taken in the room, so attributions may be imperfect. If you find an error, open an issue or a PR.

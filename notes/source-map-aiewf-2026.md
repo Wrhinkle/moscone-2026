@@ -1,8 +1,8 @@
 # Source Map — AI Engineer World's Fair 2026 (SF)
 
-Ideation source material for blog briefs. Companies from the official AIEWF 2026 sponsor page
-(captured 2026-07-02); concepts and papers from personal research notes. Use only what's listed
-here as raw material — the value is in the bridges between entries, not any single company.
+The seed document this repo's research started from. Companies come from the official AIEWF 2026
+sponsor page (captured 2026-07-02); the concept taxonomy and paper list come from conference
+research notes.
 
 ## Companies / Partners / Sponsors
 
@@ -158,9 +158,3 @@ admin tools, API-first back-office systems
 - RASST: Retrieval-Augmented Simultaneous Speech Translation
 - ProVoice-Bench: Assessing the Proactivity of Voice Agents
 
-## Personal context (for demo tie-ins)
-- Ridgeline Construction: roofing/insurance restoration back office (job packets, sub bills, AR,
-  permits/HOA, change orders, reviews)
-- Already built: Job Packet Readiness Auditor (local, paste-in → readiness verdict + structured JSON)
-- Backlog: Sub Bill Intake Checker, AR Follow-Up Prioritizer, weekly signal-intelligence agent
-  (Firecrawl-style tracker of specific engineers/CEOs)
